@@ -17,6 +17,6 @@ class TestCalc(unittest.TestCase):
             calc.triangular_numbers(-10)
         with self.assertRaises(ValueError):
             calc.triangular_numbers(99.7)
-
+# Should generate an error
 if __name__ == "__main__":
     unittest.main()
