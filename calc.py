@@ -1,4 +1,4 @@
-# This function will return the n'th triangular number
+# This function will return the nth triangular number
 
 def triangular_numbers(n):
     if n < 1 or n != int(n):
