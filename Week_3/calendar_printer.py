@@ -1,7 +1,7 @@
 import streamlit as st
 
 def blankspace():
-    st.markdown("‎ ")
+    st.markdown("‎")
 
 days_of_the_week = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
 start_day = st.selectbox(label="**Starting day of the month**", options=days_of_the_week, placeholder="Select an option...")
