@@ -1,15 +1,19 @@
 import streamlit as st
 import datetime
 import pandas as pd
+import os
 
-df = pd.read_csv("Week_4/random_dates.csv")
-cols = st.columns(2)
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+csv_path = os.path.join(BASE_DIR, "random_dates.csv")
+df = pd.read_csv(csv_path)
+
+col1, col2 = st.columns(2)
 
 todays_date= datetime.date.today()
 yesterdays_date = todays_date - datetime.timedelta(days=1)
 tomorrows_date = todays_date + datetime.timedelta(days=1)
 
-with cols[0]:
+with col1:
     with st.container(border=True):
         input_first_date = st.date_input(label="Enter a date in the past", value=None, min_value= datetime.date(1970,1,1), max_value=yesterdays_date)
         input_second_date  = st.date_input(label = "Enter a date in the future", value=None, min_value=tomorrows_date, max_value=datetime.date(2070,1,1))
@@ -25,9 +29,9 @@ with cols[0]:
         else:
             st.info("Hey Ed! Please fill at least one of the above in!")
 
-with cols[1]:
+with col2:
     with st.container(border=True):
-        st.write("**Extension Activity**")
+        st.markdown("**Extension Activity**")
         
         df.columns = ["Dates"]
         df1 = df["Dates"].str.split('/', expand=True)
