@@ -1,26 +1,34 @@
-import streamlit as st
-from math import log
+# Hey Ed, in order to run this file as well as all others please navigate to the main.py file, open a new terminal and write streamlit run main.py
 
-# Create a formula that obtains savings amount, an annual interest rate, number of years and outputs the value of the 
+import streamlit as st
+from math import log, floor, ceil
+
+# Create a function that obtains savings amount, an annual interest rate, number of years and outputs the value of the 
 # savings account after each year as well as how many years it would take for the savings to double
 def compound_interest_calculator(savings:float, interest:float, years:int) -> float: # Cannot assume the years output to be an integer
 
     try:
         # Convert the user interest rate input from to a multiplier rate in decimal form
         interest_multiplier_rate = 1 + (interest/100)
+        
         # Equation that can calculate how long it will take for savings amount to double
         years_to_double = log(2)/log(interest_multiplier_rate)
+
+        # Turn the years_to_double variable from decimal format to years and days
+        years_to_days  = ceil((years_to_double - floor(years_to_double)) * 365.25)
+
     except (UnboundLocalError, TypeError, ValueError) as e:
         st.info("Hey Ed! Please fill in the boxes **above**")
         return
     year = 0
     for i in range(years):
-        # Calculate savings amount after each within the specified range
+        # Calculate savings amount after each year within the specified range
         savings *= interest_multiplier_rate
         year += 1
         st.markdown(f"Savings after year {year}: **{round(savings,2)}**")
 
-    st.markdown(f"It will take **{round(years_to_double,2)}** years to double your money")
+    # Tell user how long it will for them to double their savings amount
+    st.markdown(f"It will take **{round(years_to_double,2)}** years to double your money, or approximately **{floor(years_to_double)}** years and **{years_to_days}** days")
     return
 
 # User inputs
