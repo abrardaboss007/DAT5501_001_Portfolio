@@ -1,10 +1,10 @@
+# Hey Ed, in order to run this test suite as well as all others, please open a new terminal and type pytest
+
 import unittest
 from streamlit.testing.v1 import AppTest
 import datetime
 
-
 at = AppTest.from_file("datetime_calculator.py").run()
-
 
 todays_date= datetime.date.today()
 yesterdays_date = todays_date - datetime.timedelta(days=1)
