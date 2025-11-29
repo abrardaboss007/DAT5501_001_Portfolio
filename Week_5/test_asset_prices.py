@@ -1,7 +1,7 @@
 import unittest
 from streamlit.testing.v1 import AppTest
 
-class TestCompoundInterestCalculator(unittest.TestCase):
+class TestAssetPrices(unittest.TestCase):
     def test_asset_prices(self):
         # Use assertions to check if the widget behaves as expected
         at = AppTest.from_file("asset_prices.py").run()
